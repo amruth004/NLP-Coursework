@@ -15,14 +15,22 @@ LOG_FILE = "logs.jsonl"
 # Load model and tokenizer
 @st.cache_resource
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained("amruthsaravanan/nlp_coursework")
-    model = AutoModelForTokenClassification.from_pretrained("amruthsaravanan/nlp_coursework")
+    tokenizer = AutoTokenizer.from_pretrained("amruthsaravanan/NLP_Coursework_2")
+    model = AutoModelForTokenClassification.from_pretrained("amruthsaravanan/NLP_Coursework_2")
     model.eval()
     return tokenizer, model
 
 tokenizer, model = load_model()
-id_to_label = {0: "O", 1: "B-AC", 2: "B-LF", 3: "I-LF"}
-color_map = {"B-AC": "#FFD700", "B-LF": "#ADFF2F", "I-LF": "#87CEFA", "O": "#E0E0E0"}
+
+# ✅ Updated token mapping to 5 tokens
+id_to_label = {0: "O", 1: "B-AC", 2: "I-AC", 3: "B-LF", 4: "I-LF"}
+color_map = {
+    "B-AC": "#FFD700",
+    "I-AC": "#FFA07A",
+    "B-LF": "#ADFF2F",
+    "I-LF": "#87CEFA",
+    "O": "#E0E0E0"
+}
 
 st.title("🧠 BERT Token Classification for NER")
 
